@@ -1,71 +1,189 @@
-# json-to-typescript-interfaces README
+# 🚀 JSON to TypeScript Interfaces
 
-This is the README for your extension "json-to-typescript-interfaces". After writing up a brief description, we recommend including the following sections.
+Convert JSON into TypeScript types instantly — inside VS Code.
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+No context switching. No online tools. Just select JSON and generate types in seconds.
 
 ---
 
-## Following extension guidelines
+## ✨ Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+* ⚡ Convert JSON → TypeScript types instantly
+* 🎯 Works on selected JSON or entire file
+* 🧠 Smart type inference (objects, arrays, primitives)
+* ✏️ Editable type name (no more `T` pain)
+* 📌 Cursor placed exactly where you need to edit
+* 🧩 Seamless VS Code integration
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+---
 
-## Working with Markdown
+## 📦 Installation
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+### From VS Code Marketplace
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Search for:
 
-## For more information
+```
+JSON to TypeScript Interfaces
+```
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+### Manual (Development)
 
-**Enjoy!**
+```bash
+git clone https://github.com/YOUR_USERNAME/json-to-typescript-interfaces.git
+cd json-to-typescript-interfaces
+npm install
+```
+
+Then press:
+
+```
+F5
+```
+
+---
+
+## 🚀 Usage
+
+### 1. Open a JSON file
+
+```json
+{
+  "name": "Aryan",
+  "age": 24,
+  "isActive": true
+}
+```
+
+---
+
+### 2. Select JSON (or leave unselected for full file)
+
+---
+
+### 3. Open Command Palette
+
+```
+Ctrl + Shift + P
+```
+
+---
+
+### 4. Run command
+
+```
+Generate TypeScript from JSON
+```
+
+---
+
+### 5. Enter type name
+
+Example:
+
+```
+User
+```
+
+---
+
+### ✅ Output
+
+```ts
+type T = {
+  name: string;
+  age: number;
+  isActive: boolean;
+}
+```
+
+👉 The type name is pre-selected — just start typing to rename.
+
+---
+
+## 🧠 How It Works
+
+* Parses selected JSON
+* Infers TypeScript types
+* Generates a clean type definition
+* Inserts it directly into your editor with smart cursor positioning
+
+---
+
+## 🎯 Example
+
+### Input
+
+```json
+{
+  "user": {
+    "id": 1,
+    "name": "John"
+  },
+  "tags": ["dev", "ts"]
+}
+```
+
+### Output
+
+```ts
+type T = {
+  user: { id: number; name: string; };
+  tags: string[];
+}
+```
+
+---
+
+## ⚠️ Limitations (v1)
+
+* Mixed-type arrays are simplified (`(string | number)[]` not yet supported)
+* No optional field detection yet
+* Nested types are inlined (no separate interfaces)
+
+---
+
+## 🛣️ Roadmap
+
+* [ ] Optional field detection
+* [ ] JSON schema support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+git clone https://github.com/YOUR_USERNAME/json-to-typescript-interfaces.git
+```
+
+Open an issue or submit a PR 🚀
+
+---
+
+## ⭐ Support
+
+If you find this useful:
+
+* ⭐ Star the repo
+* 🐦 Share with other devs
+* 🧠 Suggest improvements
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+## 💡 Why this exists
+
+Because switching to random websites to convert JSON → TS breaks flow.
+
+This extension keeps you **in the zone**.
+
+---
+
+Made with ❤️ for developers
