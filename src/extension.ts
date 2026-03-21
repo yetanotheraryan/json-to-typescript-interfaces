@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { json } from "relax-json";
 
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand(
@@ -25,14 +26,20 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			try {
-				const json = JSON.parse(text);
-
-				const ts = jsonToTs(json);
+				const repaired = json.repair(text);
+				const [parsedjson, err] = json.tryParse(repaired);
+				if(err){
+					vscode.window.showErrorMessage("Invalid JSON");
+					return;
+				}
+				const ts = jsonToTs(parsedjson);
+				console.log('Generated TypeScript:\n', ts);
 				// vscode.env.clipboard.writeText(ts); // commented for getting control over the cursor.
 				await editor.insertSnippet(
 					new vscode.SnippetString(ts)
 				);
-				vscode.window.showInformationMessage("Types copied to clipboard!");
+				await vscode.commands.executeCommand("editor.action.formatDocument"); // auto formats based on user settings
+				vscode.window.showInformationMessage("Types created successfully!");
 
 			} catch (err) {
 				vscode.window.showErrorMessage("Invalid JSON");

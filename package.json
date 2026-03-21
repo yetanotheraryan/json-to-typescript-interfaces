@@ -2,7 +2,7 @@
   "name": "json-to-typescript-interfaces",
   "displayName": "JSON to Typescript interfaces",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "assets/icon.png",
   "publisher": "yetanotheraryan",
   "repository": {
@@ -29,7 +29,23 @@
         "command": "json-to-typescript-interfaces.generateTypes",
         "title": "Generate Interface from JSON"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "command": "json-to-typescript-interfaces.generateTypes",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "json-to-typescript-interfaces.generateTypes",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -46,15 +62,18 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.110.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.56.1",
-    "eslint": "^9.39.3",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "relax-json": "^1.0.2"
   }
 }
