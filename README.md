@@ -1,3 +1,10 @@
+
+
+<p align="center">
+  <img src="./assets/icon.png" width="120" />
+</p>
+
+
 # 🚀 JSON to TypeScript Interfaces
 
 Convert JSON into TypeScript types instantly — inside VS Code.
