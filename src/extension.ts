@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 				await editor.insertSnippet(
 					new vscode.SnippetString(ts)
 				);
-				vscode.window.showInformationMessage("Types copied to clipboard!");
+				vscode.window.showInformationMessage("Types created successfully!");
 
 			} catch (err) {
 				vscode.window.showErrorMessage("Invalid JSON");
