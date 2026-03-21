@@ -1,10 +1,22 @@
 {
   "name": "json-to-typescript-interfaces",
   "displayName": "JSON to Typescript interfaces",
-  "description": "",
-  "version": "0.0.2",
+  "description": "Convert JSON to TypeScript types instantly inside VS Code. Works even with invalid JSON (auto-repair included)",
+  "version": "0.0.3",
   "icon": "assets/icon.png",
   "publisher": "yetanotheraryan",
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "json",
+    "typescript",
+    "json to typescript",
+    "json to ts",
+    "type generator",
+    "typescript generator",
+    "developer tools"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/yetanotheraryan/json-to-typescript-interfaces"
@@ -16,9 +28,6 @@
   "engines": {
     "vscode": "^1.110.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [
     "onCommand:json-to-typescript-interfaces.generateTypes"
   ],
@@ -74,6 +83,6 @@
     "typescript-eslint": "^8.56.1"
   },
   "dependencies": {
-    "relax-json": "^1.0.2"
+    "relax-json": "^1.0.3"
   }
 }
