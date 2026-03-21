@@ -3,6 +3,16 @@
   "displayName": "JSON to Typescript interfaces",
   "description": "",
   "version": "0.0.1",
+  "icon": "assets/icon.png",
+  "publisher": "yetanotheraryan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yetanotheraryan/json-to-typescript-interfaces"
+  },
+  "galleryBanner": {
+    "color": "#21214c",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.110.0"
   },
