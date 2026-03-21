@@ -8,6 +8,7 @@
 # 🚀 JSON to TypeScript Interfaces
 
 Convert JSON into TypeScript types instantly — inside VS Code.
+Handles messy json as well, repairs and then converts into typescript type.
 
 No context switching. No online tools. Just select JSON and generate types in seconds.
 
@@ -68,28 +69,20 @@ F5
 
 ---
 
-### 3. Open Command Palette
+### 3. Run command
 
 ```
-Ctrl + Shift + P
-```
 
----
+1. select the json
+2. Ctrl + Shift + T
 
-### 4. Run command
+or
 
-```
-Generate TypeScript from JSON
-```
+1. select the json
+2. Ctrl + Shift + P
+3. search for "Generate TypeScript from JSON" and hit enter
 
----
 
-### 5. Enter type name
-
-Example:
-
-```
-User
 ```
 
 ---
@@ -139,6 +132,97 @@ type T = {
   tags: string[];
 }
 ```
+
+---
+
+## 🧠 Handles Messy JSON (Powered by `relax-json`)
+
+Real-world JSON is rarely perfect.
+
+Logs, LLM outputs, and APIs often return **invalid or sloppy JSON** like:
+
+```json
+{
+  a: lam,
+  c: "2",
+  d: 3,
+}
+```
+
+❌ This would normally crash `JSON.parse`
+
+---
+
+### ✨ What this extension does differently
+
+Before generating types, it automatically **repairs malformed JSON** using `relax-json`.
+
+It intelligently fixes:
+
+* Unquoted keys → `"a"`
+* Single quotes → `"value"`
+* Unquoted string values → `"lam"`
+* Trailing commas
+* Comments (`//` and `/* */`)
+
+---
+
+### 🔧 Example
+
+#### Input (invalid JSON)
+
+```json
+{
+  a: lam,
+  c: "2",
+  d: 3,
+}
+```
+
+---
+
+#### Internally repaired to:
+
+```json
+{
+  "a": "lam",
+  "c": "2",
+  "d": 3
+}
+```
+
+---
+
+#### Final Output
+
+```ts
+type T = {
+  a: string;
+  c: string;
+  d: number;
+}
+```
+
+---
+
+### 🚀 Why this matters
+
+Most tools fail on anything that isn’t perfectly valid JSON.
+
+This extension:
+
+* ✅ **Recovers broken JSON automatically**
+* ✅ Works with real-world data (not just ideal inputs)
+* ✅ Saves time debugging tiny syntax issues
+
+---
+
+### ⚠️ Note
+
+Repair is **best-effort**, not magic:
+
+* Extremely broken structures may still fail
+* Always review generated types for critical systems
 
 ---
 
