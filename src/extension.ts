@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			const selection = editor.selection;
-			if(selection.isEmpty) {
+			if (selection.isEmpty) {
 				vscode.window.showErrorMessage("Please select some JSON");
 				return;
 			}
@@ -28,7 +28,10 @@ export function activate(context: vscode.ExtensionContext) {
 				const json = JSON.parse(text);
 
 				const ts = jsonToTs(json);
-				vscode.env.clipboard.writeText(ts);
+				// vscode.env.clipboard.writeText(ts); // commented for getting control over the cursor.
+				await editor.insertSnippet(
+					new vscode.SnippetString(ts)
+				);
 				vscode.window.showInformationMessage("Types copied to clipboard!");
 
 			} catch (err) {
@@ -42,10 +45,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() { }
 
-
-function jsonToTs(obj: any, name = "Root"): string {
+function jsonToTs(obj: any, name = "T"): string {
 	if (Array.isArray(obj)) {
-		return `type ${name} = ${mapType(typeof obj[0], obj[0])}[]`;
+		return `type \${1:${name}} = ${mapType(typeof obj[0], obj[0])}[]`;
 	}
 
 	if (typeof obj === "object" && obj !== null) {
@@ -53,17 +55,21 @@ function jsonToTs(obj: any, name = "Root"): string {
 			.map(([key, value]) => `${key}: ${mapType(typeof value, value)};`)
 			.join("\n");
 
-		return `type ${name} = {\n${fields}\n}`;
+		return `type \${1:${name}} = {\n${fields}\n}`;
 	}
 
 	return typeof obj;
 }
 
 function mapType(type: string, value: any): string {
-	if (value === null) return "null";
+	if (value === null) {
+		return "null";
+	}
 
 	if (Array.isArray(value)) {
-		if (value.length === 0) return "any[]";
+		if (value.length === 0) {
+			return "any[]";
+		}
 		return `${mapType(typeof value[0], value[0])}[]`;
 	}
 
